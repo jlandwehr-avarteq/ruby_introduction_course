@@ -1,5 +1,11 @@
 == README
 
+Init project
+- copy the `config/secret.yml.example` into `config/secret.yml` and fill the secret key with your values using:
+```
+$ rake secret
+```
+
 This README would normally document whatever steps are necessary to get the
 application up and running.
 

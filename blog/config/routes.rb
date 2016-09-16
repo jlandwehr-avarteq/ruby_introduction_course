@@ -1,8 +1,8 @@
 Rails.application.routes.draw do
 
-  root 'welcome#index'
+  root 'articles#index'
  
-  resources :articles do
+  resources :articles, except: :index do
     resources :comments
   end
 end

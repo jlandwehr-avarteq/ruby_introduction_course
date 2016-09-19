@@ -32,6 +32,28 @@
     <%= f.text_field :email %>
     <%= f.text_field :email_confirmation %>
   </div>
+  <%= f.fields_for :address do |a| %>
+    <div class="field">
+      <%= a.label :number %><br>
+      <%= a.number_field :number %>
+    </div>
+    <div class="field">
+      <%= a.label :street %><br>
+      <%= a.text_field :street %>
+    </div>
+    <div class="field">
+      <%= a.label :zip_code %><br>
+      <%= a.text_field :zip_code %>
+    </div>
+    <div class="field">
+      <%= a.label :city %><br>
+      <%= a.text_field :city %>
+    </div>
+    <div class="field">
+      <%= a.label :country %><br>
+      <%= a.text_field :country %>
+    </div>
+  <% end %>
   <div class="actions">
     <%= f.submit %>
   </div>

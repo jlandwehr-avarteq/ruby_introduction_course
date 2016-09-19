@@ -24,6 +24,10 @@
   <strong>E-Mail:</strong>
   <%= @person.email %>
 </p>
+<% if @person.address.present? %>
+  <%= render @person.address %>
+<% end %>
+
 
 <%= link_to 'Edit', edit_person_path(@person) %> |
 <%= link_to 'Back', people_path %>

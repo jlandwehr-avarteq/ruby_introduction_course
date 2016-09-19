@@ -10,6 +10,11 @@
       <th>Phone</th>
       <th>Age</th>
       <th>E-Mail</th>
+      <th>Number</th>
+      <th>Street</th>
+      <th>Zip code</th>
+      <th>City</th>
+      <th>Country</th>
       <th colspan="3"></th>
     </tr>
   </thead>
@@ -22,6 +27,11 @@
         <td><%= person.phone %></td>
         <td><%= person.age %></td>
         <td><%= person.email %></td>
+        <td><%= person.address.number %></td>
+        <td><%= person.address.street %></td>
+        <td><%= person.address.zip_code %></td>
+        <td><%= person.address.city %></td>
+        <td><%= person.address.country %></td>
         <td><%= link_to 'Show', person %></td>
         <td><%= link_to 'Edit', edit_person_path(person) %></td>
         <td><%= link_to 'Destroy', person, method: :delete, data: { confirm: 'Are you sure?' } %></td>

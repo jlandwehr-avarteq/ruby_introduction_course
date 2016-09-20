@@ -10,10 +10,6 @@ class PeopleController < ApplicationController
   # GET /people/1
   # GET /people/1.json
   def show
-<<<<<<< HEAD
-    @pet = Pet.new
-=======
->>>>>>> master
   end
 
   # GET /people/new

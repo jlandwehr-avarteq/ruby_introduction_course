@@ -1,11 +1,7 @@
 Rails.application.routes.draw do
   root 'people#index'
 
-<<<<<<< HEAD
-  resources :people do 
-    resources :pets
+  resources :people do
+    resources :pets, except: [:index, :show, :new]
   end
-=======
-  resources :people
->>>>>>> master
 end

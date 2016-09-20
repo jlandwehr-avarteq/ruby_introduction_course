@@ -1,25 +1,31 @@
 <p id="notice"><%= notice %></p>
 <h2>Personal information</h2>
+
 <p>
   <strong>First name:</strong>
   <%= @person.first_name %>
 </p>
+
 <p>
   <strong>Last name:</strong>
   <%= @person.last_name %>
 </p>
+
 <p>
   <strong>Phone:</strong>
   <%= @person.phone %>
 </p>
+
 <p>
   <strong>Age:</strong>
   <%= @person.age %>
 </p>
+
 <p>
   <strong>E-Mail:</strong>
   <%= @person.email %>
 </p>
+
 <p>
   <strong>Address:</strong>
   <% if @person.address.present? %>

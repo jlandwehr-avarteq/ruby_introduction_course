@@ -1,33 +1,40 @@
 <p id="notice"><%= notice %></p>
-
+<h2>Personal information</h2>
 <p>
   <strong>First name:</strong>
   <%= @person.first_name %>
 </p>
-
 <p>
   <strong>Last name:</strong>
   <%= @person.last_name %>
 </p>
-
 <p>
   <strong>Phone:</strong>
   <%= @person.phone %>
 </p>
-
 <p>
   <strong>Age:</strong>
   <%= @person.age %>
 </p>
-
 <p>
   <strong>E-Mail:</strong>
   <%= @person.email %>
 </p>
-<% if @person.address.present? %>
-  <%= render @person.address %>
-<% end %>
+<p>
+  <strong>Address:</strong>
+  <% if @person.address.present? %>
+    <%= render @person.address %>
+  <% end %>
+</p>
+<p>
+  <strong>Pets:</strong>
+  <% if @person.pets.any? %>
+    <%= render @person.pets %>
+  <% end %>
+</p>
 
+<h3>Add a pet:</h3>
+<%= render 'pets/form' %>
 
 <%= link_to 'Edit', edit_person_path(@person) %> |
 <%= link_to 'Back', people_path %>

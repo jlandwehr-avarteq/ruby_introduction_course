@@ -10,6 +10,7 @@ class PeopleController < ApplicationController
   # GET /people/1
   # GET /people/1.json
   def show
+    @pet = Pet.new
   end
 
   # GET /people/new
@@ -48,7 +49,7 @@ class PeopleController < ApplicationController
       else
         format.html { render :edit }
         format.json { render json: @person.errors, status: :unprocessable_entity }
-      end
+      end    
     end
   end
 

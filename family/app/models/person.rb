@@ -1,5 +1,6 @@
 class Person < ActiveRecord::Base
   has_one :address, dependent: :destroy
+  has_many :pets, dependent: :destroy
 
   validates :first_name, presence: true
   validates :last_name, presence: true
@@ -13,4 +14,7 @@ class Person < ActiveRecord::Base
   
   accepts_nested_attributes_for :address
   validates_associated :address
+
+  #accepts_nested_attributes_for :pet
+  #validates_associated :pet
 end

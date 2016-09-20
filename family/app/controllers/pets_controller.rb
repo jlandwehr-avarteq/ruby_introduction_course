@@ -1,6 +1,7 @@
 class PetsController < ApplicationController
   before_action :set_pet, only: [:show, :edit, :update, :destroy]
   before_action :set_person, only: [:create, :destroy, :edit, :update]
+  before_action :set_animal_types, only: [:create, :new, :update]
 
   # GET /pets
   # GET /pets.json
@@ -73,7 +74,11 @@ class PetsController < ApplicationController
 
     def set_person
       @person = Person.find(params[:person_id])
-    end  
+    end
+
+    def set_animal_types
+      @types = Pet::ANIMAL_TYPES
+    end
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def pet_params

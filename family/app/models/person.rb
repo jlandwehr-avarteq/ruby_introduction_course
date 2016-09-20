@@ -7,14 +7,11 @@ class Person < ActiveRecord::Base
   validates :phone, presence: true
   validates :age, presence: true, numericality: { greater_than: 0 }
   validates :email, confirmation: true
-  validates_format_of :email, 
+  validates_format_of :email,
                       :with => /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\Z/i, 
                       :on => :create
-  validates :email_confirmation, presence: true 
-  
+  validates :email_confirmation, presence: true
+
   accepts_nested_attributes_for :address
   validates_associated :address
-
-  #accepts_nested_attributes_for :pet
-  #validates_associated :pet
 end

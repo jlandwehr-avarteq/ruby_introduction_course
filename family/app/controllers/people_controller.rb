@@ -15,7 +15,7 @@ class PeopleController < ApplicationController
 
   # GET /people/new
   def new
-    @person = Person.new 
+    @person = Person.new
     @person.build_address
   end
 
@@ -49,7 +49,7 @@ class PeopleController < ApplicationController
       else
         format.html { render :edit }
         format.json { render json: @person.errors, status: :unprocessable_entity }
-      end    
+      end
     end
   end
 

@@ -1,5 +1,6 @@
 class PeopleController < ApplicationController
   before_action :set_person, only: [:show, :edit, :update, :destroy]
+  before_action :set_animal_types, only: [:show]
 
   # GET /people
   # GET /people.json
@@ -87,5 +88,9 @@ class PeopleController < ApplicationController
           :country
         ]
       )
+    end
+
+    def set_animal_types
+      @types = Pet::ANIMAL_TYPES
     end
 end

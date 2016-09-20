@@ -1,10 +1,9 @@
 <%= form_for([@person, @pet]) do |f| %>
 
-  <div class="field">
-    <%= f.label :type %><br>
-    <%= f.text_field :type %>
-  </div>
-
+  <% @types.each do |t| %>
+    <%= t %>
+    <%= f.radio_button(:type, t) %>
+  <% end %>
   <div class="field">
     <%= f.label :name %><br>
     <%= f.text_field :name %>

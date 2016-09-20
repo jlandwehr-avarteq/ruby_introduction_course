@@ -1,23 +1,7 @@
 class PetsController < ApplicationController
-  before_action :set_pet, only: [:show, :edit, :update, :destroy]
   before_action :set_person, only: [:create, :destroy, :edit, :update]
   before_action :set_animal_types, only: [:create, :new, :update, :edit]
-
-  # GET /pets
-  # GET /pets.json
-  def index
-    @pets = Pet.all
-  end
-
-  # GET /pets/1
-  # GET /pets/1.json
-  def show
-  end
-
-  # GET /pets/new
-  def new
-    @pet = Pet.new
-  end
+  before_action :set_pet, only: [:edit, :update, :destroy]
 
   # GET /pets/1/edit
   def edit
@@ -26,11 +10,10 @@ class PetsController < ApplicationController
   # POST /pets
   # POST /pets.json
   def create
-    @pet = Pet.new(pet_params)
+    @pet = @person.pets.build(pet_params)
 
     respond_to do |format|
       if @pet.save
-        @person.pets << @pet
         format.html { redirect_to person_path(@person), notice: 'Pet was successfully created.' }
         format.json { render :show, status: :created, location: @person }
       else
@@ -67,21 +50,17 @@ class PetsController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_pet
-      @pet = Pet.find(params[:id])
-    end
 
-    def set_person
-      @person = Person.find(params[:person_id])
-    end
+  def set_person
+    @person = Person.find(params[:person_id])
+  end
 
-    def set_animal_types
-      @types = Pet::ANIMAL_TYPES
-    end
+  def set_animal_types
+    @types = Pet::ANIMAL_TYPES
+  end
 
-    # Never trust parameters from the scary internet, only allow the white list through.
-    def pet_params
-      params.require(:pet).permit(:type, :name, :age)
-    end
+  # Never trust parameters from the scary internet, only allow the white list through.
+  def pet_params
+    params.require(:pet).permit(:type, :name, :age)
+  end
 end

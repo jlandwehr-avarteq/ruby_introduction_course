@@ -11,7 +11,6 @@ class PeopleController < ApplicationController
   # GET /people/1
   # GET /people/1.json
   def show
-    @pet = Pet.new
   end
 
   # GET /people/new
@@ -65,32 +64,29 @@ class PeopleController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_person
-      @person = Person.find(params[:id])
-    end
 
-    # Never trust parameters from the scary internet, only allow the white list through.
-    def person_params
-      params
-      .require(:person)
-      .permit(:first_name,
-        :last_name, 
-        :phone, 
-        :age, 
-        :email, 
-        :email_confirmation, 
-        address_attributes: 
-        [ :number, 
-          :street, 
-          :zip_code, 
-          :city, 
-          :country
-        ]
-      )
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_person
+    @person = Person.find(params[:id])
+  end
 
-    def set_animal_types
-      @types = Pet::ANIMAL_TYPES
-    end
+  # Never trust parameters from the scary internet, only allow the white list through.
+  def person_params
+    params
+    .require(:person)
+    .permit(:first_name,
+      :last_name,
+      :phone,
+      :age,
+      :email,
+      :email_confirmation,
+      address_attributes:
+      [ :number,
+        :street,
+        :zip_code,
+        :city,
+        :country
+      ]
+    )
+  end
 end

@@ -10,12 +10,11 @@ class PeopleController < ApplicationController
   # GET /people/1
   # GET /people/1.json
   def show
-    @pet = Pet.new
   end
 
   # GET /people/new
   def new
-    @person = Person.new 
+    @person = Person.new
     @person.build_address
   end
 
@@ -49,7 +48,7 @@ class PeopleController < ApplicationController
       else
         format.html { render :edit }
         format.json { render json: @person.errors, status: :unprocessable_entity }
-      end    
+      end
     end
   end
 
@@ -74,16 +73,16 @@ class PeopleController < ApplicationController
       params
       .require(:person)
       .permit(:first_name,
-        :last_name, 
-        :phone, 
-        :age, 
-        :email, 
-        :email_confirmation, 
-        address_attributes: 
-        [ :number, 
-          :street, 
-          :zip_code, 
-          :city, 
+        :last_name,
+        :phone,
+        :age,
+        :email,
+        :email_confirmation,
+        address_attributes:
+        [ :number,
+          :street,
+          :zip_code,
+          :city,
           :country
         ]
       )

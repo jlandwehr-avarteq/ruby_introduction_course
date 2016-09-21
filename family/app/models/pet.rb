@@ -1,7 +1,7 @@
 class Pet < ActiveRecord::Base
   belongs_to :person
 
-  ANIMAL_TYPES = [:cat, :dog].freeze
+  ANIMAL_TYPES = %i(cat dog).freeze
 
   def self.inheritance_column
     nil

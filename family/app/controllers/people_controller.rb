@@ -70,6 +70,10 @@ class PeopleController < ApplicationController
     @person = Person.find(params[:id])
   end
 
+  def set_animal_types
+    @types = Pet::ANIMAL_TYPES
+  end
+
   # Never trust parameters from the scary internet, only allow the white list through.
   def person_params
     params

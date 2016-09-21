@@ -1,17 +1,20 @@
-<%= form_for([@person, @person.pets.build]) do |f| %>
+<%= form_for([@person, (@pet || @person.pets.build)]) do |f| %>
 
   <% @types.each do |t| %>
     <%= t.capitalize %>
     <%= f.radio_button(:type, t.capitalize) %>
   <% end %>
+
   <div class="field">
     <%= f.label :name %><br>
     <%= f.text_field :name %>
   </div>
+
   <div class="field">
     <%= f.label :age %><br>
     <%= f.number_field :age %>
   </div>
+
   <div class="actions">
     <%= f.submit %>
   </div>

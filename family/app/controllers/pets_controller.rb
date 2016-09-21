@@ -40,8 +40,7 @@ class PetsController < ApplicationController
   # DELETE /pets/1
   # DELETE /pets/1.json
   def destroy
-    pet = @person.pets.find(params[:id])
-    pet.destroy
+    @pet.destroy
 
     respond_to do |format|
       format.html { redirect_to person_path(@person), notice: 'Pet was successfully destroyed.' }
@@ -50,6 +49,10 @@ class PetsController < ApplicationController
   end
 
   private
+
+  def set_pet
+    @pet = Pet.find(params[:id])
+  end
 
   def set_person
     @person = Person.find(params[:person_id])

@@ -1,6 +1,8 @@
 class Person < ActiveRecord::Base
-  has_one :address,              as: :owner, dependent: :destroy
-  has_many :pets,                dependent: :destroy
+  has_one :address,              as: :owner,    dependent: :destroy
+  has_many :pets,                               dependent: :destroy
+  has_many :people_degrees,  dependent: :destroy
+  has_many :degrees, through: :people_degrees
 
   validates :first_name,         presence: true
   validates :last_name,          presence: true

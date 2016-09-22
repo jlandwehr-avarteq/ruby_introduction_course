@@ -1,6 +1,7 @@
 class PeopleController < ApplicationController
   before_action :set_person, only: [:show, :edit, :update, :destroy]
-  before_action :set_animal_types, only: [:show]
+  before_action :set_animal_types, only: :show
+  before_action :set_degrees, only: [:new, :edit, :create, :update]
 
   # GET /people
   # GET /people.json
@@ -27,6 +28,7 @@ class PeopleController < ApplicationController
   # POST /people.json
   def create
     @person = Person.new(person_params)
+    set_person_degrees_from_params
 
     respond_to do |format|
       if @person.save
@@ -42,6 +44,8 @@ class PeopleController < ApplicationController
   # PATCH/PUT /people/1
   # PATCH/PUT /people/1.json
   def update
+    set_person_degrees_from_params
+
     respond_to do |format|
       if @person.update(person_params)
         format.html { redirect_to @person, notice: 'Person was successfully updated.' }
@@ -70,8 +74,16 @@ class PeopleController < ApplicationController
     @person = Person.find(params[:id])
   end
 
+  def set_degrees
+    @degrees = Degree.all
+  end
+
   def set_animal_types
     @types = Pet::ANIMAL_TYPES
+  end
+
+  def set_person_degrees_from_params
+    @person.degrees = Degree.where(id: params[:person][:degree_ids])
   end
 
   # Never trust parameters from the scary internet, only allow the white list through.

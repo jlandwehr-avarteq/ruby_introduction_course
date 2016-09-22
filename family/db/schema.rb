@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160921131948) do
+ActiveRecord::Schema.define(version: 20160922063939) do
 
   create_table "addresses", force: :cascade do |t|
     t.integer  "number"
@@ -46,9 +46,8 @@ ActiveRecord::Schema.define(version: 20160921131948) do
   create_table "people_degrees", force: :cascade do |t|
     t.integer  "person_id"
     t.integer  "degree_id"
-    t.datetime "created_at",  null: false
-    t.datetime "updated_at",  null: false
-    t.datetime "obtained_at"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   add_index "people_degrees", ["degree_id"], name: "index_people_degrees_on_degree_id"

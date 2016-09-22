@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160921061404) do
+ActiveRecord::Schema.define(version: 20160921131948) do
 
   create_table "addresses", force: :cascade do |t|
     t.integer  "number"
@@ -21,10 +21,17 @@ ActiveRecord::Schema.define(version: 20160921061404) do
     t.string   "country"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.integer  "person_id"
+    t.integer  "owner_id"
+    t.string   "owner_type"
   end
 
-  add_index "addresses", ["person_id"], name: "index_addresses_on_person_id"
+  add_index "addresses", ["owner_type", "owner_id"], name: "index_addresses_on_owner_type_and_owner_id"
+
+  create_table "degrees", force: :cascade do |t|
+    t.string   "title"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "people", force: :cascade do |t|
     t.string   "first_name"
@@ -36,6 +43,17 @@ ActiveRecord::Schema.define(version: 20160921061404) do
     t.string   "email"
   end
 
+  create_table "people_degrees", force: :cascade do |t|
+    t.integer  "person_id"
+    t.integer  "degree_id"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+    t.datetime "obtained_at"
+  end
+
+  add_index "people_degrees", ["degree_id"], name: "index_people_degrees_on_degree_id"
+  add_index "people_degrees", ["person_id"], name: "index_people_degrees_on_person_id"
+
   create_table "pets", force: :cascade do |t|
     t.string   "type"
     t.string   "name"
@@ -46,6 +64,16 @@ ActiveRecord::Schema.define(version: 20160921061404) do
   end
 
   add_index "pets", ["person_id"], name: "index_pets_on_person_id"
+
+  create_table "school_degrees", force: :cascade do |t|
+    t.integer  "school_id"
+    t.integer  "degree_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  add_index "school_degrees", ["degree_id"], name: "index_school_degrees_on_degree_id"
+  add_index "school_degrees", ["school_id"], name: "index_school_degrees_on_school_id"
 
   create_table "schools", force: :cascade do |t|
     t.string   "school_name"

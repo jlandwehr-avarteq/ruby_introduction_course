@@ -32,6 +32,15 @@
     <%= render @person.address %>
   <% end %>
 </p>
+
+<p>
+  <strong>Degrees:</strong>
+  <% @person.degrees.each do |degree| %>
+    <%= degree.title %>
+    <%= link_to "More Information", degree_path(degree) %>
+  <% end %>
+</p>
+
 <p>
   <strong>Pets:</strong>
   <% if @person.pets.any? %>

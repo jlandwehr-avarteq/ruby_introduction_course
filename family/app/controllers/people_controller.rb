@@ -28,7 +28,7 @@ class PeopleController < ApplicationController
   # POST /people.json
   def create
     @person = Person.new(person_params)
-    @person.degrees = Degree.where(id: person_degrees_params)
+    set_person_degrees_from_params
 
     respond_to do |format|
       if @person.save
@@ -44,7 +44,8 @@ class PeopleController < ApplicationController
   # PATCH/PUT /people/1
   # PATCH/PUT /people/1.json
   def update
-    @person.degrees = Degree.where(id: person_degrees_params)
+    set_person_degrees_from_params
+
     respond_to do |format|
       if @person.update(person_params)
         format.html { redirect_to @person, notice: 'Person was successfully updated.' }
@@ -81,8 +82,8 @@ class PeopleController < ApplicationController
     @types = Pet::ANIMAL_TYPES
   end
 
-  def person_degrees_params
-    params[:person][:degree_ids]
+  def set_person_degrees_from_params
+    @person.degrees = Degree.where(id: params[:person][:degree_ids])
   end
 
   # Never trust parameters from the scary internet, only allow the white list through.

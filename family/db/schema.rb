@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160922063939) do
+ActiveRecord::Schema.define(version: 20160922125336) do
 
   create_table "addresses", force: :cascade do |t|
     t.integer  "number"
@@ -32,6 +32,17 @@ ActiveRecord::Schema.define(version: 20160922063939) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
+
+  create_table "friendships", force: :cascade do |t|
+    t.integer  "person_id"
+    t.integer  "friend_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  add_index "friendships", ["friend_id"], name: "index_friendships_on_friend_id"
+  add_index "friendships", ["person_id", "friend_id"], name: "index_friendships_on_person_id_and_friend_id", unique: true
+  add_index "friendships", ["person_id"], name: "index_friendships_on_person_id"
 
   create_table "people", force: :cascade do |t|
     t.string   "first_name"

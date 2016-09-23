@@ -42,6 +42,18 @@
 </p>
 
 <p>
+  <strong>Friends:</strong>
+</p>
+<% @person.friends.each do |friend| %>
+  <p>
+    <%= friend.first_name %>
+    <%= friend.last_name %>
+    <%= link_to "More Information", person_path(friend) %>
+  </p>
+<% end %>
+
+
+<p>
   <strong>Pets:</strong>
   <% if @person.pets.any? %>
     <%= render @person.pets %>

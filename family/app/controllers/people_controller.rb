@@ -2,6 +2,7 @@ class PeopleController < ApplicationController
   before_action :set_person, only: [:show, :edit, :update, :destroy]
   before_action :set_animal_types, only: :show
   before_action :set_degrees, only: [:new, :edit, :create, :update]
+  before_action :select_possible_friends, only: [:edit, :update]
 
   # GET /people
   # GET /people.json
@@ -45,6 +46,7 @@ class PeopleController < ApplicationController
   # PATCH/PUT /people/1.json
   def update
     set_person_degrees_from_params
+    set_person_friends_from_params
 
     respond_to do |format|
       if @person.update(person_params)
@@ -96,6 +98,7 @@ class PeopleController < ApplicationController
       :age,
       :email,
       :email_confirmation,
+      :friend_ids,
       address_attributes:
       [ :number,
         :street,
@@ -104,5 +107,15 @@ class PeopleController < ApplicationController
         :country
       ]
     )
+  end
+
+  #selects all people that are not friends with @person
+  def select_possible_friends
+    @possible_friends = Person.all.to_a - @person.friends.to_a
+    @possible_friends.delete(@person)
+  end
+
+  def set_person_friends_from_params
+    @person.friends = Person.where(id: params[:person][:friend_ids])
   end
 end

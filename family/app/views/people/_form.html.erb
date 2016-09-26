@@ -55,6 +55,9 @@
     </div>
   <% end %>
   <div>
+    <%= f.select :friend_ids, options_for_select(@possible_friends.map { |p| [ p.last_name, p.id ] }), include_blank: true %>
+  </div>
+  <div class="field">
     <%= f.select :degree_ids, options_for_select(@degrees.map { |degree| [degree.title, degree.id] }), {}, {multiple: true} %>
   </div>
   <div class="actions">

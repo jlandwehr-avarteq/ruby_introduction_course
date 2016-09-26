@@ -52,7 +52,14 @@
   </p>
 <% end %>
 <%=link_to "Add a friend", edit_person_path(@person) %>
-
+<p>
+  <strong>Family:</strong>
+</p>
+<% @family.each do |f_member| %>
+  <%= f_member.last_name %>
+  <%= f_member.first_name %>
+  <%= link_to "Show", person_path(f_member) %>
+<% end %>
 <p>
   <strong>Pets:</strong>
   <% if @person.pets.any? %>

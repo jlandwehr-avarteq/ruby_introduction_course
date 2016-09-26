@@ -20,4 +20,9 @@ class Person < ActiveRecord::Base
 
   accepts_nested_attributes_for :address
   validates_associated :address
+
+  #searches for all family members, by using the friend functionality
+  scope :family_members, -> { where(last_name: self.last_name) }
+
+  #.order('first_name 'ASC)
 end

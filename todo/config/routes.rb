@@ -1,4 +1,15 @@
 Rails.application.routes.draw do
+
+  root 'tasks#index'
+
+  get 'tasks/index'
+
+  get 'tasks/show'
+
+  get 'tasks/new'
+
+  get 'tasks/edit'
+
   get 'index/show'
 
   get 'index/new'

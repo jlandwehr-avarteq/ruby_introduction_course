@@ -32,6 +32,27 @@
     <%= render @person.address %>
   <% end %>
 </p>
+
+<p>
+  <strong>Degrees:</strong>
+  <% @person.degrees.each do |degree| %>
+    <%= degree.title %>
+    <%= link_to "More Information", degree_path(degree) %>
+  <% end %>
+</p>
+
+<p>
+  <strong>Friends:</strong>
+</p>
+<% @person.friends.each do |friend| %>
+  <p>
+    <%= friend.first_name %>
+    <%= friend.last_name %>
+    <%= link_to "More Information", person_path(friend) %>
+  </p>
+<% end %>
+<%=link_to "Add a friend", edit_person_path(@person) %>
+
 <p>
   <strong>Pets:</strong>
   <% if @person.pets.any? %>

@@ -54,6 +54,14 @@
       <%= a.text_field :country %>
     </div>
   <% end %>
+  <% unless @possible_friends.nil? %>
+    <div>
+      <%= f.select :friend_ids, options_for_select(@possible_friends.map { |p| [ p.last_name, p.id ] }), include_blank: true %>
+    </div>
+  <% end %>
+  <div class="field">
+    <%= f.select :degree_ids, options_for_select(@degrees.map { |degree| [degree.title, degree.id] }), {}, {multiple: true} %>
+  </div>
   <div class="actions">
     <%= f.submit %>
   </div>

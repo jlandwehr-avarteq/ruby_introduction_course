@@ -1,9 +1,10 @@
 class PeopleController < ApplicationController
-  before_action :set_person, only: [:show, :edit, :update, :destroy]
+  before_action :set_person, only: %i(show edit update destroy)
   before_action :set_animal_types, only: :show
-  before_action :set_degrees, only: [:new, :edit, :create, :update]
-  before_action :select_possible_friends, only: [:edit, :update]
-
+  before_action :set_degrees, only: %i(new edit create update)
+  before_action :select_possible_friends, only: %i(edit update)
+  before_action :set_person_degrees_from_params, only: %i(create update)
+  before_action :set_person_friends_from_params, only: :update
   # GET /people
   # GET /people.json
   def index
@@ -13,7 +14,6 @@ class PeopleController < ApplicationController
   # GET /people/1
   # GET /people/1.json
   def show
-    #@family = Person.family_members(@person.last_name)
     @family = Person.family_members(@person)
   end
 
@@ -31,7 +31,6 @@ class PeopleController < ApplicationController
   # POST /people.json
   def create
     @person = Person.new(person_params)
-    set_person_degrees_from_params
 
     respond_to do |format|
       if @person.save
@@ -47,8 +46,6 @@ class PeopleController < ApplicationController
   # PATCH/PUT /people/1
   # PATCH/PUT /people/1.json
   def update
-    set_person_degrees_from_params
-    set_person_friends_from_params
 
     respond_to do |format|
       if @person.update(person_params)
@@ -113,8 +110,7 @@ class PeopleController < ApplicationController
 
   #selects all people that are not friends with @person
   def select_possible_friends
-    @possible_friends = Person.all.to_a - @person.friends.to_a
-    @possible_friends.delete(@person)
+    @possible_friends = Person.all.to_a - @person.friends.to_a - [@person]
   end
 
   def set_person_friends_from_params

@@ -64,6 +64,11 @@ ActiveRecord::Schema.define(version: 20160922125336) do
   add_index "people_degrees", ["degree_id"], name: "index_people_degrees_on_degree_id"
   add_index "people_degrees", ["person_id"], name: "index_people_degrees_on_person_id"
 
+  create_table "person_people", force: :cascade do |t|
+    t.integer "friends_id"
+    t.integer "timestamp_id"
+  end
+
   create_table "pets", force: :cascade do |t|
     t.string   "type"
     t.string   "name"

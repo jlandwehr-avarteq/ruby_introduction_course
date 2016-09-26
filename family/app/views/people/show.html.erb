@@ -56,9 +56,11 @@
   <strong>Family:</strong>
 </p>
 <% @family.each do |f_member| %>
-  <%= f_member.last_name %>
-  <%= f_member.first_name %>
-  <%= link_to "Show", person_path(f_member) %>
+  <p>
+    <%= f_member.last_name %>
+    <%= f_member.first_name %>
+    <%= link_to "Show", person_path(f_member) %>
+  </p>
 <% end %>
 <p>
   <strong>Pets:</strong>

@@ -13,7 +13,8 @@ class PeopleController < ApplicationController
   # GET /people/1
   # GET /people/1.json
   def show
-    @family = Person.all.family_members
+    #@family = Person.family_members(@person.last_name)
+    @family = Person.family_members(@person)
   end
 
   # GET /people/new

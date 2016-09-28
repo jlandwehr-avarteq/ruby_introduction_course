@@ -1,15 +1,8 @@
 class TasksController < ApplicationController
-  before_action :set_task, only: [:show, :edit, :update, :destroy]
+  before_action :set_task, only: [ :edit, :update, :update_status, :destroy ]
 
   def index
     @tasks = Task.all
-  end
-
-  def show
-
-  end
-
-  def new
     @task = Task.new
   end
 
@@ -23,11 +16,19 @@ class TasksController < ApplicationController
   end
 
   def edit
+  end
 
+  def update_status
+    if @task.complete?
+      @task.uncomplete!
+    else
+      @task.complete!
+    end
+    redirect_to root_path, notice: 'Status successfully changed.'
   end
 
   def update
-    if @task.update
+    if @task.update(task_params)
       redirect_to root_path
     else
       flash[:error] = 'Task could not be updated!'
@@ -35,11 +36,8 @@ class TasksController < ApplicationController
   end
 
   def destroy
-    if @task.destroy
-      redirect_to root_path
-    else
-      flash[:error] = 'Task could not be destroyed!'
-    end
+    @task.destroy
+    redirect_to root_path
   end
 
   private

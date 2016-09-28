@@ -1,8 +1,8 @@
-<div class="col-lg-6">
-    <div class="input-group">
-      <input type="text" class="form-control" placeholder="Add a task">
-      <span class="input-group-btn">
-        <button class="btn btn-default" type="button">Add</button>
-      </span>
-    </div><!-- /input-group -->
-  </div><!-- /.col-lg-6 -->
+<%= form_for @task do |f| %>
+  <div class="input-group">
+    <%= f.text_field :title, class: 'form-control', placeholder: 'Add a task...' %>
+    <span class="input-group-btn">
+      <%= f.submit "Add", class: "btn btn-primary" %>
+    </span>
+  </div>
+<% end %>

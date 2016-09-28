@@ -1,11 +1,38 @@
-<h1>Tasks</h1>
-<%= render 'addbar' %>
-
-<div class="container">
-  <% @tasks.each do |task| %>
-    <div class="row">
-      <div class="col-md-3"></div>
-      <div class="col-md-9"><%= link_to task.title, tasks_show_path(task) %></div>
+<div class='container'>
+  <div class='row'>
+    <div class='col-md-12'>
+      <h1>Todo list</h1>
     </div>
-  <% end %>
+  </div>
+</div>
+
+<div class='container'>
+  <div class='row'>
+    <div class='col-md-12'>
+      <%= render 'addbar' %>
+    </div>
+  </div>
+</div>
+
+<div class='container'>
+  <div class='row'>
+    <div class='col-md-12'>
+      <table class='table table-responsive'>
+        <% @tasks.each do |task| %>
+          <tr>
+             <td>
+             <%= render_status_button(task) %>
+            </td>
+             <td>
+              <%= render_title_link(task) %>
+            </td>
+            <td>
+              <%= render_task_edit_button(task) %>
+              <%= render_task_delete_button(task) %>
+            </td>
+          </tr>
+        <% end %>
+      </ul>
+    </div>
+  </div>
 </div>

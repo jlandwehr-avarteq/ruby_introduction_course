@@ -3,9 +3,9 @@ class CreateTasks < ActiveRecord::Migration
     create_table :tasks do |t|
       t.string :title
       t.text :description
-      t.boolean :status, default: false
+      t.integer :status, default: 0
 
       t.timestamps null: false
     end
   end
-end
+endd

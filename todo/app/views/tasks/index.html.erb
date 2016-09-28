@@ -24,7 +24,7 @@
              <%= render_status_button(task) %>
             </td>
              <td>
-              <%= render_title_link(task) %>
+              <%= link_to render_title_link(task), task_path(task) %>
             </td>
             <td>
               <%= render_task_edit_button(task) %>

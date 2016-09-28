@@ -1,2 +1,26 @@
-<h1>Tasks#show</h1>
-<p>Find me in app/views/tasks/show.html.erb</p>
+<div class="container">
+  <div class=row>
+    <p>
+      <strong>Title:</strong>
+      <%= @task.title %>
+    </p>
+  </div>
+  <div class=row>
+    <p>
+      <strong>Description:</strong>
+      <%= @task.description %>
+    </p>
+  </div>
+  <div class=row>
+    <p>
+      <strong>Status:</strong>
+      <%= @task.status%>
+    </p>
+  </div>
+  <div class=row>
+    <div class="btn-group" role="group">
+    <%= link_to "Edit", edit_task_url(@task), class: "btn btn-default" %>
+    <%= link_to 'Back', root_path, class: "btn btn-default" %>
+  </div>
+  </div>
+</div>

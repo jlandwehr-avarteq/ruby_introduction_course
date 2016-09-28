@@ -1,5 +1,5 @@
 class TasksController < ApplicationController
-  before_action :set_task, only: [ :edit, :update, :update_status, :destroy ]
+  before_action :set_task, only: [:show, :edit, :update, :update_status, :destroy ]
 
   def index
     @tasks = Task.all
@@ -13,6 +13,9 @@ class TasksController < ApplicationController
     else
       flash[:error] = 'Task could not be saved!'
     end
+  end
+
+  def show
   end
 
   def edit

@@ -16,10 +16,10 @@ module TasksHelper
   end
 
   def render_task_edit_button(task)
-    link_to 'Edit', edit_task_url(task), class: "btn btn-primary"
+    link_to render_glyphicon_pencil, edit_task_url(task), class: "btn btn-primary"
   end
 
   def render_task_delete_button(task)
-    link_to 'Delete', task_path(task), class: "btn btn-danger", method: :delete
+    link_to render_glyphicon_trash, task_path(task), class: "btn btn-danger", method: :delete
   end
 end

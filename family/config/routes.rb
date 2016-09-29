@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  resources :degrees
+  resources :schools
   root 'people#index'
 
   resources :people do

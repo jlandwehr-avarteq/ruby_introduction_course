@@ -1,0 +1,17 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Title:</strong>
+  <%= @degree.title %>
+</p>
+
+<p><strong>Schools:</strong></p>
+  <% @degree.schools.each do |school| %>
+    <p>
+      <%= school.school_name %>
+      <%= link_to 'More Information',  school_path(school) %>
+    </p>
+<% end %>
+
+<%= link_to 'Edit', edit_degree_path(@degree) %> |
+<%= link_to 'Back', degrees_path %>

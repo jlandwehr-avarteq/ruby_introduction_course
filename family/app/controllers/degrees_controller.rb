@@ -92,5 +92,4 @@ class DegreesController < ApplicationController
     def set_school_degrees_from_params
       @degree.schools = School.where(id: school_ids_params)
     end
-
 end

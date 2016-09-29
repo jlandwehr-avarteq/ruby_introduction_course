@@ -1,5 +1,4 @@
 module IconHelper
-
   def render_glyphicon_pencil
     "<i class='glyphicon glyphicon-pencil'></i>".html_safe
   end

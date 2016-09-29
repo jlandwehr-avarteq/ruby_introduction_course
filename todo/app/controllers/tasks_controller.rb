@@ -1,15 +1,26 @@
 class TasksController < ApplicationController
-  before_action :set_task, only: [:show, :edit, :update, :update_status, :destroy ]
+  before_action :set_task, except: %i(index create)
 
+  # Generate a @task to be used in the form
+  # Retrieves @tasks that is all the task from the database
+  # depending of the params[:filter], @tasks can be filtered
   def index
-    @tasks = Task.all
     @task = Task.new
+
+    if params[:filter] == 'complete'
+      @tasks = Task.complete
+    elsif params[:filter] == 'uncomplete'
+       @tasks = Task.uncomplete
+    else
+       @tasks = Task.all
+    end
   end
 
   def create
     @task = Task.new(task_params)
+
     if @task.save
-      redirect_to root_path
+      redirect_to root_path, notice: 'Task successfully created.'
     else
       flash[:error] = 'Task could not be saved!'
     end
@@ -27,12 +38,13 @@ class TasksController < ApplicationController
     else
       @task.complete!
     end
+
     redirect_to root_path, notice: 'Status successfully changed.'
   end
 
   def update
     if @task.update(task_params)
-      redirect_to root_path
+      redirect_to root_path, notice: 'Task successfully updated.'
     else
       flash[:error] = 'Task could not be updated!'
     end
@@ -40,7 +52,8 @@ class TasksController < ApplicationController
 
   def destroy
     @task.destroy
-    redirect_to root_path
+
+    redirect_to root_path, notice: 'Task successfully destroyed.'
   end
 
   private

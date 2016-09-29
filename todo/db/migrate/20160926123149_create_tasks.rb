@@ -8,4 +8,4 @@ class CreateTasks < ActiveRecord::Migration
       t.timestamps null: false
     end
   end
-endd
+end

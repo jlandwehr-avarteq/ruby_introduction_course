@@ -1,25 +1,41 @@
 require 'rails_helper'
 
 RSpec.describe Task, type: :model do
-  before(:each) do
-    @task = create(:task)
+  describe 'default values' do
+    subject { create(:task).status }
+
+    it { is_expected.to eq('uncomplete') }
   end
 
-  it 'should be uncomplete on default' do
-    expect(@task.status).to eq('uncomplete')
+  describe 'valid arguments' do
+    subject { build(:task, description: nil) }
+
+    it 'should allow an empty descriptions' do
+      is_expected.to be_valid
+    end
+
+    it { expect(subject.title).not_to be_nil }
+    it { is_expected.to be_valid }
   end
 
-# it 'should only allow complete and uncomplete as status' do
-#    expect(build(:task, status: 'invalid')).to be_invalid
-#  end
+  describe 'invalid arguments' do
+    subject { build(:invalid_task) }
 
-  it 'should allow an empty descriptions' do
-    task = build(:task, description: nil)
-    expect(task).to be_valid
-  end
+    it { expect(subject.title).to be_nil }
+    it { is_expected.to be_invalid }
 
-  it 'should not allow empty titles' do
-    task = build(:task, title: nil)
-    expect(task).to be_invalid
+    it 'should not be saved' do
+      subject.save
+
+      expect(Task.all).not_to include(subject)
+    end
+
+    it 'save should return an error array' do
+      subject.save
+
+      expect(subject.errors).not_to be_empty
+      expect(subject.errors).to include(:title)
+      expect(subject.errors[:title]).to eq([ "can't be blank" ])
+    end
   end
 end

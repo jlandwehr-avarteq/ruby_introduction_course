@@ -22,7 +22,8 @@ class TasksController < ApplicationController
     if @task.save
       redirect_to root_path, notice: 'Task successfully created.'
     else
-      flash[:error] = 'Task could not be saved!'
+      #flash[:error] = 'Task could not be saved!'
+      redirect_to root_path, notice: "Task could not be saved!"
     end
   end
 
@@ -46,7 +47,7 @@ class TasksController < ApplicationController
     if @task.update(task_params)
       redirect_to root_path, notice: 'Task successfully updated.'
     else
-      flash[:error] = 'Task could not be updated!'
+      redirect_to root_path, notice: 'Task could not be updated!'
     end
   end
 

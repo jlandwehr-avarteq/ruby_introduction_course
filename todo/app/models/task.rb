@@ -6,4 +6,6 @@ class Task < ActiveRecord::Base
   # * Task.complete == Task.where(status: Task.statuses[:complete]) ; and return the collection of
   #                                                                   @task
   enum status: [ :uncomplete, :complete ]
+
+  validates :title, presence: true
 end

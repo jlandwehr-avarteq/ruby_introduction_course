@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  devise_for :users
   root 'tasks#index'
 
   # %i() is the same as declaring an array of symbols [:sym1, :sym2]

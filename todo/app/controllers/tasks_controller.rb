@@ -1,4 +1,5 @@
 class TasksController < ApplicationController
+  before_action :authenticate_user!
   before_action :set_task, except: %i(index create)
 
   # Generate a @task to be used in the form
